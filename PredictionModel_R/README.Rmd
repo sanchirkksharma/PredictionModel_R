@@ -1,3 +1,12 @@
+---
+title: "README"
+output: 
+  github_document:
+    toc: true
+---
+
+
+
 #Airbnb Deal Classification Project
 
 ##Overview
