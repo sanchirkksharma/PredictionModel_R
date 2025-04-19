@@ -2,9 +2,9 @@ library(shiny)
 library(plotly)
 
 # Load required data
-test_data <- read.csv("airbnbTestStudents.csv")
-predictions <- read.csv("submission_airbnb.csv")
-borough_data <- read.csv("Boroughs.csv")  # neighborhood + borough
+test_data <- read.csv("Test.csv")
+predictions <- read.csv("result_airbnb.csv")
+borough_data <- read.csv("localities_NYC.csv")
 test_data <- merge(test_data, borough_data, by.x = "neighbourhood", by.y = "neighborhood", all.x = TRUE)
 
 

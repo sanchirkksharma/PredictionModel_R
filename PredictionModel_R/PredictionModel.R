@@ -3,8 +3,8 @@
 library(rpart)
 
 # Read the data
-airbnb_data <- read.csv("airbnbTrain.csv")
-boroughs_data <- read.csv("Boroughs.csv")
+airbnb_data <- read.csv("Train.csv")
+boroughs_data <- read.csv("localities_NYC.csv")
 
 
 head(airbnb_data)
@@ -234,8 +234,8 @@ cat('Standard deviation of cross-validation accuracy:', sd(cv_accuracies), '\n')
 
 
 # Read the test data and submission template
-test_data <- read.csv("airbnbTestStudents.csv")
-submission <- read.csv("submission_airbnb.csv")
+test_data <- read.csv("Test.csv")
+submission <- read.csv("result_airbnb.csv")
 
 # Merge test data with borough information
 test_full <- merge(test_data, boroughs_data, by.x="neighbourhood", by.y="neighborhood", all.x=TRUE)
@@ -324,7 +324,7 @@ submission$Deal <- final_predictions
 
 
 # Save updated submission file
-write.csv(submission, "submission_airbnb.csv", row.names = FALSE)
+write.csv(submission, "result_airbnb.csv", row.names = FALSE)
 
 
 saveRDS(borough_avg_price, "borough_avg_price.rds")

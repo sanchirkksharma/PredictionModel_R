@@ -27,7 +27,7 @@ Tools used: `ggplot2`, `dplyr`, `corrplot`
 
 ##Model Building and Prediction Pipeline
 
-Script: [`PredictionModel3(Final Version).R`]
+Script: [`PredictionModel.R`]
 
 ###Steps:
 1. Feature Engineering
@@ -46,7 +46,7 @@ Script: [`PredictionModel3(Final Version).R`]
 
 4. Final Prediction
    - Trained models applied to test data
-   - Results saved to `submission_airbnb.csv`
+   - Results saved to `result_airbnb.csv`
 
 ---
 
@@ -65,7 +65,7 @@ shiny::runApp("app.R")
 
 
 ##Outputs
--submission_airbnb.csv: Final classification predictions
+-result_airbnb.csv: Final classification predictions
 
 -.rds files: Serialized models, borough averages, and quantiles
 
