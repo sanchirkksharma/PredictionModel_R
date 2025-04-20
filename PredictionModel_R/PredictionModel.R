@@ -235,7 +235,7 @@ cat('Standard deviation of cross-validation accuracy:', sd(cv_accuracies), '\n')
 
 # Read the test data and submission template
 test_data <- read.csv("Test.csv")
-submission <- read.csv("result_airbnb.csv")
+
 
 # Merge test data with borough information
 test_full <- merge(test_data, boroughs_data, by.x="neighbourhood", by.y="neighborhood", all.x=TRUE)
@@ -317,9 +317,12 @@ test_full$rule_model <- test_rule_decision
 # Make final predictions using combined model
 final_predictions <- predict(combined_tree, test_full, type="class")
 
-
-# Update the Deal column in the submission file
-submission$Deal <- final_predictions
+submission <- data.frame(
+  id = test_full$id,
+  Deal = as.character(final_predictions),
+  stringsAsFactors = FALSE
+)
+write.csv(submission, "result_airbnb.csv", row.names = FALSE)
 
 
 
@@ -337,11 +340,17 @@ saveRDS(footage_quantiles, "footage_quantiles.rds")
 saveRDS(review_quantiles, "review_quantiles.rds")
 saveRDS(median(airbnb_full$review_weight), "review_weight_median.rds")
 
+# Recreate factor levels and save them
+saveRDS(levels(airbnb_full$price_category), "price_levels.rds")
+saveRDS(levels(airbnb_full$footage_category), "footage_levels.rds")
+saveRDS(levels(airbnb_full$review_category), "review_levels.rds")
+saveRDS(levels(airbnb_full$floor_category), "floor_levels.rds")
+
+
 
 # Saving the trained model
-saveRDS(tree1, "tree1.rds")
-saveRDS(tree2, "tree2.rds")
-saveRDS(combined_tree, "combined_tree.rds")
-
+saveRDS(tree1, "tree1_verified.rds")
+saveRDS(tree2, "tree2_verified.rds")
+saveRDS(combined_tree, "combined_tree_verified.rds")
 
 
